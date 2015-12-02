@@ -1,12 +1,25 @@
 var express = require('express'),
     exphbs = require('express-handlebars'),
-    bodyParser=require('body-parser')
+    bodyParser = require('body-parser'),
+    mysql = require('mysql'),
+    myConnection = require('express-myconnection')
     app = express();
+
 app.set('strict routing', true);
 app.set('x-powered-by', false)
 app.set('Admin', false);
 
+//Gives access to our database tables
+var dbOptions = {
+     host : "localhost",
+     user : "root",
+     password : "2197832",
+     port : 3306,
+     database : "enviroWise"
+ };
 
+//Allows us to use mysql from the http request
+app.use(myConnection(mysql, dbOptions, "single"));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
