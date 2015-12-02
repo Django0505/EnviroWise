@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Django0505/EnviroWise.svg)](https://travis-ci.org/Django0505/EnviroWise)
+
 # EnviroWise
 To empower people to recycle techno waste and create job opportunities in the process
 
