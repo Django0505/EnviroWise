@@ -1,0 +1,27 @@
+{
+  "name": "envirowise",
+  "version": "1.0.0",
+  "description": "To empower people to recycle techno waste and create job opportunities in the process",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Django0505/EnviroWise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Django0505/EnviroWise/issues"
+  },
+  "homepage": "https://github.com/Django0505/EnviroWise#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1"
+  }
+}
