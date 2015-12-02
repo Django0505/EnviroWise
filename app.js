@@ -15,7 +15,7 @@ var dbOptions = {
      user : "root",
      password : "2197832",
      port : 3306,
-     database : "enviroWise"
+     database : "EnviroWise"
  };
 
 //Allows us to use mysql from the http request
