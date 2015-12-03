@@ -13,7 +13,7 @@ app.set('Admin', false);
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "2197832",
+     password : "spot",
      port : 3306,
      database : "EnviroWise"
  };
@@ -33,12 +33,29 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 app.use(express.static('views'));
 app.use(express.static('public'));
+
+
 app.get('/',function(req,res){
 	res.render('index')
 
 });
 app.get('/bin',function(req,res){
     res.render('collector')
+
+});
+
+app.get('/about',function(req,res){
+    res.render('about')
+
+});
+
+app.get('/feedback',function(req,res){
+    res.render('feedback')
+
+});
+
+app.get('/contact',function(req,res){
+    res.render('contact')
 
 });
 
