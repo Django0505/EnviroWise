@@ -4,8 +4,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection'),
-    signup = require("./routes/signup");
-    login = require("./routes/login")
+    location = require('./routes/locations')
+    signup = require("./routes/signup"),
+    login = require("./routes/login"),
     app = express();
 
 app.set('strict routing', true);
@@ -16,7 +17,7 @@ app.use(compression());
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "spot",
+     password : "coder123",
      port : 3306,
      database : "EnviroWise"
  };

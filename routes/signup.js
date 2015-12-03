@@ -43,7 +43,6 @@ req.getConnection(function(err, connection){
        res.redirect('/signup');
       });
     });
-  });
 };
 exports.delete = function(req, res, next){
 	var id = req.params.id;
