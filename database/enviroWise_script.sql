@@ -12,7 +12,7 @@ create table users(id int not null auto_increment,
                     );
 create table bin_status(id int not null auto_increment,
                         bin_full bool,
-                        discription varchar(100);
+                        description varchar(100),
                         locations varchar(100),
                         latitude decimal(10.7),
                         longitude decimal(10.7),
