@@ -24,6 +24,7 @@
           <h4><i class="fa fa-fw fa-check"></i>Add Locations</h4>
         </div>
         <div class="panel-body">
+          <form method="post" action="/locations/add/:{{id}}">
           <label for="heading">Description</label>
           <input type="text" class="u-full-width" name="description" value = {{location.description}}>
           <div class="row2">
@@ -53,6 +54,48 @@
             </div>
             <input class="button-primary" type="submit" value="Submit">
           </div>
+          </form>
+          <table>
+              <thead>
+                  <tr>
+                      <th>
+
+                      </th>
+                      <th>
+                          Name
+                      </th>
+                      <th>
+                          Latitude
+                      </th>
+                      <th>
+                          Longitude
+                      </th>
+
+                  </tr>
+              </thead>
+              <tbody id="locations">
+                  {{#bin_status}}
+                      <tr>
+                          <td>
+                              <input type="checkbox" name="selected" value="{{id}}">
+                          </td>
+                          <td>
+                              {{description}}
+                          </td>
+                          <td>
+                              {{latitude}}
+                          </td>
+                          <td>
+                              {{longitude}}
+                          </td>
+                          <td>
+                              <a href="/locations/delete/{{id}}">Delete</a>
+                          </td>
+                      </tr>
+                  {{/bin_status}}
+              </tbody>
+          </table>
+
         </div>
       </div>
     </div>

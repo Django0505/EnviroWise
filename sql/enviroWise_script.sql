@@ -14,7 +14,7 @@ create table bin_status(id int not null auto_increment,
                         bin_full bool,
                         description varchar(100),
                         locations varchar(100),
-                        latitude decimal(10.7),
-                        longitude decimal(10.7),
+                        latitude varchar(100),
+                        longitude varchar(100),
                         primary key(id)
                         );

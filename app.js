@@ -4,6 +4,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection')
+    location = require('./routes/locations')
     app = express();
 
 app.set('strict routing', true);
@@ -14,7 +15,7 @@ app.use(compression())
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "2197832",
+     password : "coder123",
      port : 3306,
      database : "EnviroWise"
  };
@@ -60,6 +61,8 @@ app.post('/contact', function(req, res){
 app.get('/feedback', function(req, res){
   res.render('feedback');
 })
+
+app.post('/locations/add/:id', location.add);
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
