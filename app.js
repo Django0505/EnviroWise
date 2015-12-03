@@ -49,12 +49,12 @@ app.get('/collector', function(req, res){
 })
 
 //Here we rendering the contacts template to the browser
-app.get('/contacts', function(req, res){
-  res.render('contacts');
+app.get('/contact', function(req, res){
+  res.render('contact');
 })
 //Here we posting to our database
-app.post('/contacts', function(req, res){
-  res.render('contacts');
+app.post('/contact', function(req, res){
+  res.render('contact');
 })
 
 app.get('/feedback', function(req, res){
