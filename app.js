@@ -15,7 +15,15 @@ app.use(compression())
 var dbOptions = {
      host : "localhost",
      user : "root",
+<<<<<<< HEAD
+<<<<<<< HEAD
+     password : "2197832",
+=======
      password : "spot",
+>>>>>>> develop
+=======
+     password : "spot",
+>>>>>>> 5203b1a5df4fcc96bcefad4e4a27e6b1531c75ed
      port : 3306,
      database : "EnviroWise"
  };
@@ -62,7 +70,7 @@ app.get('/feedback', function(req, res){
 
 app.post('/locations/add', location.add);
 app.get('/', location.show);
-
+app.get('/locations/delete/:id', location.delete);
 
 var port = process.env.PORT || 3001;
 var server = app.listen(port, function() {
