@@ -3,14 +3,15 @@ var express = require('express'),
     exphbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
-    myConnection = require('express-myconnection')
-    location = require('./routes/locations')
+    myConnection = require('express-myconnection'),
+    signup = require("./routes/signup");
+    login = require("./routes/login")
     app = express();
 
 app.set('strict routing', true);
 app.set('x-powered-by', false);
 app.set('Admin', false);
-app.use(compression())
+app.use(compression());
 //Gives access to our database tables
 var dbOptions = {
      host : "localhost",
@@ -22,7 +23,7 @@ var dbOptions = {
 
 //Allows us to use mysql from the http request
 app.use(myConnection(mysql, dbOptions, "single"));
- app.use(bodyParser.urlencoded({extended: false}));
+
  app.use(bodyParser.json());
  app.engine('handlebars', exphbs({
      defaultLayout: 'main'
@@ -30,7 +31,9 @@ app.use(myConnection(mysql, dbOptions, "single"));
 app.set('view engine', 'handlebars');
 app.use(express.static('views'));
 app.use(express.static('public'));
-
+app.get('/',function(req,res){
+ 	res.render('index')
+ });
 
 //Here we rendering the login template to the browser
 app.get("/login", function(req, res){
@@ -64,9 +67,12 @@ app.post('/locations/add', location.add);
 app.get('/', location.show);
 app.get('/locations/delete/:id', location.delete);
 
+
 var port = process.env.PORT || 5000;
+
+
 var server = app.listen(port, function() {
     var host = server.address().address
     var port = server.address().port
-    console.log('EnviroWise running at http://localhost:3000/');
+    console.log('EnviroWise running at http://localhost:5000/');
 });
