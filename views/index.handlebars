@@ -16,6 +16,7 @@
             </label>
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
+          <br>
         </div>
       </div>
 
@@ -24,6 +25,7 @@
           <h4><i class="fa fa-fw fa-check"></i>Add Locations</h4>
         </div>
         <div class="panel-body">
+          <form method="post" action="/locations/add">
           <label for="heading">Description</label>
           <input type="text" class="u-full-width" name="description" value = {{location.description}}>
           <div class="row2">
@@ -53,6 +55,41 @@
             </div>
             <input class="btn btn-success" type="submit" value="Submit">
           </div>
+          <table class="table table-responsive">
+
+              <thead>
+                  <tr>
+                      <th>
+                          Name
+                      </th>
+                      <th>
+                          Latitude
+                      </th>
+                      <th>
+                          Longitude
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {{#locations}}
+                      <tr>
+                          <td>
+                              {{description}}
+                          </td>
+                          <td>
+                              {{latitude}}
+                          </td>
+                          <td>
+                              {{longitude}}
+                          </td>
+                          <td>
+                              <a href="/locations/delete/{{id}}">Delete</a>
+                          </td>
+                      </tr>
+                  {{/locations}}
+              </tbody>
+          </table>
+        </form>
         </div>
       </div>
     </div>
