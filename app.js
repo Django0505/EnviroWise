@@ -3,34 +3,27 @@ var express = require('express'),
     exphbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
-    myConnection = require('express-myconnection')
-    location = require('./routes/locations')
+    myConnection = require('express-myconnection'),
+    signup = require("./routes/signup");
+    login = require("./routes/login")
     app = express();
 
 app.set('strict routing', true);
 app.set('x-powered-by', false);
 app.set('Admin', false);
-app.use(compression())
+app.use(compression());
 //Gives access to our database tables
 var dbOptions = {
      host : "localhost",
      user : "root",
-<<<<<<< HEAD
-<<<<<<< HEAD
      password : "2197832",
-=======
-     password : "spot",
->>>>>>> develop
-=======
-     password : "spot",
->>>>>>> 5203b1a5df4fcc96bcefad4e4a27e6b1531c75ed
      port : 3306,
      database : "EnviroWise"
  };
 
 //Allows us to use mysql from the http request
 app.use(myConnection(mysql, dbOptions, "single"));
- app.use(bodyParser.urlencoded({extended: false}));
+
  app.use(bodyParser.json());
  app.engine('handlebars', exphbs({
      defaultLayout: 'main'
@@ -38,7 +31,9 @@ app.use(myConnection(mysql, dbOptions, "single"));
 app.set('view engine', 'handlebars');
 app.use(express.static('views'));
 app.use(express.static('public'));
-
+app.get('/',function(req,res){
+ 	res.render('index')
+ });
 
 //Here we rendering the login template to the browser
 app.get("/login", function(req, res){
@@ -68,11 +63,7 @@ app.get('/feedback', function(req, res){
   res.render('feedback');
 })
 
-app.post('/locations/add', location.add);
-app.get('/', location.show);
-
-
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 var server = app.listen(port, function() {
     var host = server.address().address
     var port = server.address().port
