@@ -2,12 +2,14 @@ var express = require('express'),
     exphbs = require('express-handlebars'),
     bcrypt = require('bcrypt'),
     bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    cookieSession = require('cookie-session'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection')
     app = express();
 
 app.set('strict routing', true);
-app.set('x-powered-by', false)
+app.set('x-powered-by', false);
 app.set('Admin', false);
 
 //Gives access to our database tables
@@ -38,6 +40,16 @@ app.get('/',function(req,res){
 	res.render('index')
 
 });
+
+app.use(bodyParser.urlencoded({ extended : false}))
+app.use(bodyParser.json());
+app.use(session ({
+        secret:'envirowise',
+        cookie:{maxAge:600000},
+        resave: false,
+        saveUninitialized:true,
+     }))
+
 // app.post('/signup', login.signups);
 // app.post("/login", login.logins);
 // app.post('/logout', login.logouts);
