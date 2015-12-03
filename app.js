@@ -14,7 +14,7 @@ app.use(compression())
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "coder123",
+     password : "2197832",
      port : 3306,
      database : "EnviroWise"
  };
