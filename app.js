@@ -37,6 +37,11 @@ app.get('/',function(req,res){
 	res.render('index')
 
 });
+app.get('/bin',function(req,res){
+    res.render('collector')
+
+});
+
 // app.post('/signup', login.signups);
 // app.post("/login", login.logins);
 // app.post('/logout', login.logouts);
