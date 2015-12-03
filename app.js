@@ -1,19 +1,22 @@
 var express = require('express'),
     exphbs = require('express-handlebars'),
-    bodyParser = require('body-parser'),
+    //bcrypt = require('bcrypt'),
+    //bodyParser = require('body-parser'),
+    //cookieParser = require('cookie-parser'),
+    //cookieSession = require('cookie-session'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection')
     app = express();
 
 app.set('strict routing', true);
-app.set('x-powered-by', false)
+app.set('x-powered-by', false);
 app.set('Admin', false);
 
 //Gives access to our database tables
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "spot",
+     password : "2197832",
      port : 3306,
      database : "EnviroWise"
  };
@@ -33,31 +36,19 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 app.use(express.static('views'));
 app.use(express.static('public'));
-
-
 app.get('/',function(req,res){
 	res.render('index')
 
 });
-app.get('/bin',function(req,res){
-    res.render('collector')
 
-});
-
-app.get('/about',function(req,res){
-    res.render('about')
-
-});
-
-app.get('/feedback',function(req,res){
-    res.render('feedback')
-
-});
-
-app.get('/contact',function(req,res){
-    res.render('contact')
-
-});
+app.use(bodyParser.urlencoded({ extended : false}))
+app.use(bodyParser.json());
+app.use(session ({
+        secret:'envirowise',
+        cookie:{maxAge:600000},
+        resave: false,
+        saveUninitialized:true,
+     }))
 
 // app.post('/signup', login.signups);
 // app.post("/login", login.logins);
