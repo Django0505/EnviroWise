@@ -70,8 +70,12 @@ app.post('/locations/add', location.add);
 app.get('/', location.show);
 app.get('/locations/delete/:id', location.delete);
 
+<<<<<<< HEAD
 var port = process.env.PORT || 3000;
 >>>>>>> 2c0899f421e9436916bcb9c30fb34e6ae2dac819
+=======
+var port = process.env.PORT || 3001;
+>>>>>>> cc1f0d535d2089a9bbc98f80968738cf69c184a2
 var server = app.listen(port, function() {
     var host = server.address().address
     var port = server.address().port
