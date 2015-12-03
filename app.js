@@ -57,9 +57,7 @@ app.post('/contact', function(req, res){
   res.render('contact');
 })
 
-app.get('/feedback', function(req, res){
-  res.render('feedback');
-})
+
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
