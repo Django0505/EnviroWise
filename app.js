@@ -62,7 +62,7 @@ app.get('/feedback', function(req, res){
 
 app.post('/locations/add', location.add);
 app.get('/', location.show);
-
+app.get('/locations/delete/:id', location.delete);
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
