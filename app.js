@@ -12,7 +12,7 @@ app.set('Admin', false);
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "2197832",
+     password : "coder123",
      port : 3306,
      database : "EnviroWise"
  };
@@ -20,12 +20,6 @@ var dbOptions = {
 //Allows us to use mysql from the http request
 app.use(myConnection(mysql, dbOptions, "single"));
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-    extended: false
-}))
-// parse application/json
-app.use(bodyParser.json())
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
@@ -35,15 +29,6 @@ app.use(express.static('public'));
 app.get('/',function(req,res){
 	res.render('index')
 });
-
-app.use(bodyParser.urlencoded({ extended : false}))
-app.use(bodyParser.json());
-app.use(session ({
-        secret:'envirowise',
-        cookie:{maxAge:600000},
-        resave: false,
-        saveUninitialized:true,
-     }))
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
