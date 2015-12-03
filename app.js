@@ -63,7 +63,15 @@ app.get('/feedback', function(req, res){
   res.render('feedback');
 })
 
+<<<<<<< HEAD
 var port = process.env.PORT || 5000;
+=======
+app.post('/locations/add', location.add);
+app.get('/', location.show);
+app.get('/locations/delete/:id', location.delete);
+
+var port = process.env.PORT || 3000;
+>>>>>>> 2c0899f421e9436916bcb9c30fb34e6ae2dac819
 var server = app.listen(port, function() {
     var host = server.address().address
     var port = server.address().port
