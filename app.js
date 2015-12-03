@@ -4,6 +4,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection')
+    location = require('./routes/locations')
     app = express();
 
 app.set('strict routing', true);
@@ -14,24 +15,22 @@ app.use(compression())
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "coder123",
+     password : "spot",
      port : 3306,
      database : "EnviroWise"
  };
 
 //Allows us to use mysql from the http request
 app.use(myConnection(mysql, dbOptions, "single"));
-
- app.use(bodyParser.json())
+ app.use(bodyParser.urlencoded({extended: false}));
+ app.use(bodyParser.json());
  app.engine('handlebars', exphbs({
      defaultLayout: 'main'
  }));
 app.set('view engine', 'handlebars');
 app.use(express.static('views'));
 app.use(express.static('public'));
-app.get('/',function(req,res){
- 	res.render('index')
- });
+
 
 //Here we rendering the login template to the browser
 app.get("/login", function(req, res){
@@ -57,6 +56,12 @@ app.post('/contact', function(req, res){
   res.render('contact');
 })
 
+app.get('/feedback', function(req, res){
+  res.render('feedback');
+})
+
+app.post('/locations/add', location.add);
+app.get('/', location.show);
 
 
 var port = process.env.PORT || 3000;
