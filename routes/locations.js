@@ -17,6 +17,7 @@ exports.add = function (req, res, next) {
 		});
 	});
 };
+
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err)
@@ -28,5 +29,17 @@ exports.show = function (req, res, next) {
     			locations : results
     		});
       });
+	});
+};
+
+exports.delete = function(req, res, next){
+	var id = req.params.id;
+	req.getConnection(function(err, connection){
+		connection.query('delete from locations where id = ?', [id], function(err,rows){
+			if(err){
+    				console.log("Error Selecting : %s ",err );
+			}
+			res.redirect('/');
+		});
 	});
 };
