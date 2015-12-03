@@ -1,32 +1,71 @@
-<!doctype html>
-<html>
+<DOCTYPE html>
+<html lang = "en">
 <head>
-
-    </style>
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/main_page.css">
-    <link href='static/css/simplesidebar.css' rel='stylesheet' type='text/css'>
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+<title>
+signup page
+</title>
 </head>
 <body>
-  <head>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,900,800' rel='stylesheet' type='text/css'>
-  </head>
+<div id="container">
+  <ul class="people_list">
+    <h1>Register Here</h1>
+      <form method="POST" action="signup">
+        Name:<br /><input name='name'placeholder="name" input value='' /><br />
+        Username:<br /> <input name="username" placeholder="username" input value='{{username}}' /><br />
+       Password:<br /><input type="password" name="password" value="" placeholder="Password" required autofocus><br />
+        <input type='submit'  />
+        address:<br /><input type="address" name="address" value="" placeholder="address" required autofocus><br />
+         <input type='submit'  />
+      </form>
+         <h3>You already have an account sign in <a href="/login">here</a><h3>
+  </ul>
+    </div>
 
-  <form action="#" method="POST" name="my_form">
-      <h2>New to  <sign>Sign Up</span></h2>
-      <input type="text" name="sign_up_username" id="sign_up_username" placeholder="email address">
-      <!--for and ID attributes should be the same-->
-      <input type="password" name="sign_up_password" id="sign_up_password" placeholder="password">
+<script>
 
-      <input type="submit" name="sign_up_submit" id="sign_up_login" value="Sign up">
-  </form>
+
+  $('form').on('submit',function(){
+  $(this).find('.password').remove();
+  //  get each form input for validation
+
+  var username = $('#username').val().trim(),
+      name = $('#name').val().trim(),
+      password = $('#password').val().trim(),
+      role = $('#role').val().trim();
+
+  //  check for empty fields
+
+  if (username === ""){
+    $('#username')
+      .focus()
+      .after('<span class="message">Please fill in your username!</span>');
+  }
+  else if (password === ""){
+    $('#password').focus().after('<span class="message">Please fill in your password!</span>');
+  }
+  else if (role === ""){
+    $('#role').focus().after('<span class="message">Please add your role!</span>');
+  }else if
+    (name === ""){
+      $('#name')
+      .focus()
+      .after('<span class="message">Please fill in your name!</span>');
+  }
+ /*
+  // Test AJAX
+  else{
+    $.ajax({
+      success: function(){
+        $('form').hide();
+        $('.container').empty().append("<h2 class='text-center'>Information has been submited. Thank you!</h2><h3 class='text-center'>Please reload to start over</h3>");
+      }
+    });
+  }
+  return false; // prevent form from submitting
+});
+*/
+</script>
+
 
 </body>
 
