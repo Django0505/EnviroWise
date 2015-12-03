@@ -14,7 +14,7 @@ app.use(compression())
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "coder123",
+     password : "2197832",
      port : 3306,
      database : "EnviroWise"
  };
@@ -57,7 +57,9 @@ app.post('/contact', function(req, res){
   res.render('contact');
 })
 
-
+app.get('/feedback', function(req, res){
+  res.render('feedback');
+})
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
