@@ -11,10 +11,10 @@ create table users(id int not null auto_increment,
                     primary key(id)
                     );
 create table bin_status(id int not null auto_increment,
-                        bin_full bool,
-                        description varchar(100),
-                        locations varchar(100),
-                        latitude decimal(10.7),
-                        longitude decimal(10.7),
+                        -- bin_full bool ,
+                        description varchar(100) ,
+                        -- locations varchar(100) ,
+                        latitude char(100) ,
+                        longitude char(100) ,
                         primary key(id)
                         );
