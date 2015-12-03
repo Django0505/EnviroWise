@@ -49,6 +49,10 @@ app.post("/users/update/:id",users.checkUser,users.update);
 app.get("/login", function(req, res){
  res.render("login");
 })
+
+app.get("/signup", function(req, res){
+ res.render("signup");
+})
 app.get("/login",login.get);
 app.post("/login", login.update);
 //Here we rendering the about template to the browser
