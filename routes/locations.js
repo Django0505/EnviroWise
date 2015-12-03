@@ -9,10 +9,24 @@ exports.add = function (req, res, next) {
       latitude : input.latitude,
       longitude: input.longitude
 			};
-		connection.query('insert into bin_status set ?', data, function(err, results) {
+			console.log(data);
+		connection.query('insert into locations set ?', data, function(err, results) {
 				if (err)
 			console.log("Error inserting : %s ",err );
 				res.redirect('/');
 		});
+	});
+};
+exports.show = function (req, res, next) {
+	req.getConnection(function(err, connection){
+		if (err)
+			return next(err);
+		connection.query('select * from locations', [], function(err, results) {
+        	if (err) return next(err);
+					console.log(results);
+    		res.render( 'index', {
+    			locations : results
+    		});
+      });
 	});
 };

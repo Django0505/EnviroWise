@@ -16,6 +16,7 @@
             </label>
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
+          <br>
         </div>
       </div>
 
@@ -24,7 +25,7 @@
           <h4><i class="fa fa-fw fa-check"></i>Add Locations</h4>
         </div>
         <div class="panel-body">
-          <form method="post" action="/locations/add/:{{id}}">
+          <form method="post" action="/locations/add">
           <label for="heading">Description</label>
           <input type="text" class="u-full-width" name="description" value = {{location.description}}>
           <div class="row2">
@@ -54,13 +55,10 @@
             </div>
             <input class="button-primary" type="submit" value="Submit">
           </div>
-          </form>
-          <table>
+          <table class="table table-responsive">
+
               <thead>
                   <tr>
-                      <th>
-
-                      </th>
                       <th>
                           Name
                       </th>
@@ -70,15 +68,11 @@
                       <th>
                           Longitude
                       </th>
-
                   </tr>
               </thead>
-              <tbody id="locations">
-                  {{#bin_status}}
+              <tbody>
+                  {{#locations}}
                       <tr>
-                          <td>
-                              <input type="checkbox" name="selected" value="{{id}}">
-                          </td>
                           <td>
                               {{description}}
                           </td>
@@ -92,10 +86,10 @@
                               <a href="/locations/delete/{{id}}">Delete</a>
                           </td>
                       </tr>
-                  {{/bin_status}}
+                  {{/locations}}
               </tbody>
           </table>
-
+        </form>
         </div>
       </div>
     </div>

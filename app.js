@@ -22,17 +22,15 @@ var dbOptions = {
 
 //Allows us to use mysql from the http request
 app.use(myConnection(mysql, dbOptions, "single"));
-
- app.use(bodyParser.json())
+ app.use(bodyParser.urlencoded({extended: false}));
+ app.use(bodyParser.json());
  app.engine('handlebars', exphbs({
      defaultLayout: 'main'
  }));
 app.set('view engine', 'handlebars');
 app.use(express.static('views'));
 app.use(express.static('public'));
-app.get('/',function(req,res){
- 	res.render('index')
- });
+
 
 //Here we rendering the login template to the browser
 app.get("/login", function(req, res){
@@ -62,7 +60,9 @@ app.get('/feedback', function(req, res){
   res.render('feedback');
 })
 
-app.post('/locations/add/:id', location.add);
+app.post('/locations/add', location.add);
+app.get('/', location.show);
+
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
