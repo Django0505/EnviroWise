@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      var mapCenter = new google.maps.LatLng(-33.9137105, 17.4075679);//Google map Coordinates
+      var map
+      function displayMap() { //function initializes Google map
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+          center: mapCenter, // map center
+          zoom: 7, //zoom level, 0 = earth view to higher value
+          panControl: true, //enable pan Control
+          zoomControl: true, //enable zoom control
+          zoomControlOptions: {
+              style: google.maps.ZoomControlStyle.SMALL //zoom control size
+           },
+          scaleControl: true, // enable scale control
+          mapTypeId: google.maps.MapTypeId.ROADMAP // google map type
+        };
+        map = new google.maps.Map(mapCanvas, mapOptions);
+      }
+
+      function addMyMarker() { //function that will add markers on button click
+          var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(-33.9071676, 18.4191048),
+              map: map,
+                draggable:true,
+                animation: google.maps.Animation.DROP,
+              title:"This a new marker!"
+          });
+      }
+    </script>
+
+
+  </head>
+  <body onLoad="displayMap()">
+    <h1>Location</h1>
+
+    <!--Getting the first location -->
+    <button id="locationButton1" type="button" name="button">Get Location 1</button> <br>
+    <div id="location1">
+      <input id="latitude1" >
+      <input id="longitude1">
+    </div><br>
+
+    <!--  -->
+    <button id="locationButton2" type="button" name="button">Get Location 2</button> <br>
+    <div id="location2">
+      <input id="latitude2" >
+      <input id="longitude2" >
+    </div><br>
+
+    <!--Calculating the distance between location1 and location2 -->
+    <button id="calculateButton" type="button" name="button">Calculate Distance</button>
+    <div>
+      <input id="calculateDistance" name="name" value="">
+    </div><br>
+
+    <button id="clearButton" type="button" name="button">Clear Information</button> <br><br>
+    <button id="tagButton" onClick="addMyMarker()">Drop Marker</button>
+    <div id="map" style="width: 550px; height: 450px;margin-top:50px;margin-left:auto;margin-right:auto;">
+
+    </div>
+  </body>
+
+  <script type="text/javascript" src="geolib.min.js"></script>
+  <script type="text/javascript">
+    var dispalyButton1 = document.getElementById('locationButton1');
+    var dispalyButton2 = document.getElementById('locationButton2');
+    var distanceButton = document.getElementById('calculateButton');
+    var clearButton = document.getElementById('clearButton');
+    var longitude1 = document.getElementById('longitude1');
+    var latitude1 = document.getElementById('latitude1');
+    var longitude2 = document.getElementById('longitude2');
+    var latitude2 = document.getElementById('latitude2');
+    var distance = document.getElementById('calculateDistance');
+
+    dispalyButton1.addEventListener('click', function() {
+      navigator.geolocation.getCurrentPosition(function(location1) {
+        latitude1.value = location1.coords.latitude;
+        longitude1.value = location1.coords.longitude;
+      });
+    })
+
+    dispalyButton2.addEventListener('click', function() {
+      navigator.geolocation.getCurrentPosition(function(location2) {
+        latitude2.value = location2.coords.latitude;
+        longitude2.value = location2.coords.longitude;
+
+      });
+    })
+
+    calculateButton.addEventListener('click', function() {
+      var distance = geolib.getDistance(
+      {latitude: latitude1.value, longitude: longitude1.value},
+      {latitude: latitude2.value, longitude: longitude2.value}
+      );
+
+      document.getElementById('calculateDistance').value = distance;
+    });
+
+    clearButton.addEventListener('click', function() {
+      longitude1.value = "";
+      latitude1.value = "";
+      longitude2.value = "";
+      latitude2.value = "";
+      distance.value = "";
+    })
+
+
+  </script>
+</html>
