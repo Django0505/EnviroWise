@@ -1,9 +1,9 @@
 var express = require('express'),
     exphbs = require('express-handlebars'),
     //bcrypt = require('bcrypt'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    cookieSession = require('cookie-session'),
+    //bodyParser = require('body-parser'),
+    //cookieParser = require('cookie-parser'),
+    //cookieSession = require('cookie-session'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection')
     app = express();
