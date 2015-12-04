@@ -13,121 +13,99 @@
                     <h4><i class="fa fa-fw fa-check"></i> BIN TO BE COLLECTED</h4>
                 </div>
                 <div class="panel-body">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> My Bin is full
-                        </label>
-                    </div>
+                  <table class="table table-responsive">
+
+                      <thead>
+                          <tr>
+                              <th>
+                                  Name
+                              </th>
+                              <th>
+                                  Address
+                              </th>
+                              <!-- <th>
+                                  Longitude
+                              </th> -->
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {{#locations}}
+                              <tr>
+                                <td>
+                                  <input type="checkbox" name="selected" value="1">
+                                </td>
+                                  <td>
+                                      {{description}}
+                                  </td>
+                                  <td>
+                                      {{address}}
+                                  </td>
+                                  <!-- <td>
+                                      {{longitude}}
+                                  </td> -->
+                                  <td>
+                                      <a href="/locations/delete/{{id}}">Delete</a>
+                                  </td>
+                              </tr>
+                          {{/locations}}
+                      </tbody>
+                  </table>
                     <button type="submit" class="btn btn-success">Collected</button>
                 </div>
             </div>
-            <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4><i class="fa fa-fw fa-check"></i>Add Locations</h4>
-        </div>
-        <div class="panel-body">
-          <form method="post" action="/locations/add">
-          <label for="heading">Description</label>
-          <input type="text"class="form-control" name="description" value = {{location.description}}>
-          <div class="row2">
-            <div class="location">
-            {{!-- <div class="four columns">
-              <label for="description" >Latitude</label>
-              <input type="decimal" class="form-control" name="latitude" id="latitude" value = {{location.langitude}}>
-            </div> --}}
-            {{!-- <div class="four columns">
-              <label for="description" >Longitude</label>
-              <input type="decimal" class="form-control" name="longitude" id="longitude" value = {{location.longitude}}>
-            </div> --}}
-          </div>
-            <div class="two columns">
-                <br>
-              <input type="button" class="btn btn-primary" name="getLocation" id="getLocation" value="Get location">
-              <script>
-              var dispalyButton1 = document.getElementById('getLocation');
-              var longitude = document.getElementById('longitude');
-              var latitude = document.getElementById('latitude');
-              dispalyButton1.addEventListener('click', function() {
-                navigator.geolocation.getCurrentPosition(function(location) {
-                  latitude.value = location.coords.latitude;
-                  longitude.value = location.coords.longitude;
-                });
-              })
-              </script>
-            </div>
-            <br>
-            <input class="btn btn-success" type="submit" value="Submit">
-          </div>
-          <table class="table table-responsive">
-
-              <thead>
-                  <tr>
-                      <th>
-                          Name
-                      </th>
-                      <th>
-                          Latitude
-                      </th>
-                      <th>
-                          Longitude
-                      </th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {{#locations}}
-                      <tr>
-                          <td>
-                              {{description}}
-                          </td>
-                          <td>
-                              {{latitude}}
-                          </td>
-                          <td>
-                              {{longitude}}
-                          </td>
-                          <td>
-                              <a href="/locations/delete/{{id}}">Delete</a>
-                          </td>
-                      </tr>
-                  {{/locations}}
-              </tbody>
-          </table>
-        </form>
-        </div>
       </div>
-        </div>
+
 
 
         <div class="col-md-6 col-md-offset-2">
-            <button id="tagButton" onClick="addMyMarker()">Drop Marker</button><br><br>
-            <div id="map" style="width: 550px; height: 450px;"></div>
-            <script>
+          <div id="floating-panel">
+          <input id="latlng" type="text" value="-33.9071676,18.4191048">
+          <input id="submit" type="button" value="Reverse Geocode">
+        </div>
+          <div id="map" style="width: 550px; height: 450px;"></div>
+          <script>
             var map;
             function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -33.9137105, lng: 19.4075679},
-            zoom: 8
-            });
-            }
-            function addMyMarker() { //function that will add markers on button click
-            var marker = new google.maps.Marker({
-            position: {lat:-33.9071676, lng:18.4191048},
-            map: map,
-            draggable:true,
-            animation: google.maps.Animation.DROP,
-            title:"This a new marker!"
-            });
-            }
-            </script>
-        </div>
+              map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -33.9137105, lng: 19.4075679},
+                zoom: 8
+              });
 
+              var geocoder = new google.maps.Geocoder;
+              var infowindow = new google.maps.InfoWindow;
+
+              document.getElementById('submit').addEventListener('click', function() {
+                geocodeLatLng(geocoder, map, infowindow);
+              });
+            }
+
+            function geocodeLatLng(geocoder, map, infowindow) {
+              var input = document.getElementById('latlng').value;
+              var latlngStr = input.split(',', 2);
+              var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+              geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                  if (results[1]) {
+                    map.setZoom(11);
+                    var marker = new google.maps.Marker({
+                      position: latlng,
+                      map: map
+                    });
+                    infowindow.setContent(results[1].formatted_address);
+                    infowindow.open(map, marker);
+                  } else {
+                    window.alert('No results found');
+                  }
+                } else {
+                  window.alert('Geocoder failed due to: ' + status);
+                }
+              });
+            }
+
+          </script>
+        </div>
     </div>
-    <!-- /.row -->
-    <!-- Portfolio Section -->
-    
-    <!-- /.row -->
-    
-    <!-- Features Section -->
+</div>
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">EnviroWise</h2>
@@ -135,14 +113,14 @@
         <div class="col-md-6">
             <p>Technotrash:</p>
             <ul>
-                
+
                 <li>Unwanted electrical device</li>
                 <li>electronics contain non-biodegradable materials</li>
-                
+
             </ul>
             <p>Takin care of the enviroment means taking care of yourself.</p>
         </div>
-        
+
     </div>
     <!-- /.row -->
     <hr>

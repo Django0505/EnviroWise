@@ -18,7 +18,7 @@ app.use(compression());
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "spot",
+     password : "coder123",
      port : 3306,
      database : "EnviroWise"
  };
@@ -55,7 +55,7 @@ app.get("/signup", function(req, res){
 app.get("/login",login.get);
 app.post("/login", login.update);
 
-//api key AIzaSyCLSiuuq-hfTNv9g27d3NFtnmNJiBv0Hm0 
+//api key AIzaSyCLSiuuq-hfTNv9g27d3NFtnmNJiBv0Hm0
 //Here we rendering the about template to the browser
 app.get('/about', function(req, res){
   res.render('about');
