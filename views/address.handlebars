@@ -1,0 +1,22 @@
+<div id="container">
+	<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th><h2>NAME</h2></th>
+	        <th><h2>ADDRESS</h2></th>
+		</tr>
+	   {{#users}}
+	   <tr>
+	        <td><h2>{{name}}</h2></td>
+	        <td><h2>{{address}}</h2></td>
+		    <td><a href="/users/delete/{{id}}">Delete</a></td>
+		</tr>
+		{{/users}}
+
+	</table>
+	</div>
+		{{#empty}}
+	   <p>The list is empty.</p>
+		{{/empty}}
+
+</div>

@@ -1,10 +1,10 @@
 
 exports.checkUser = function (req, res,next) {
-    if(req.session.user){
+    if(req.session.users){
 		next();
 	}
 	else{
-		res.redirect('/');
+		res.redirect('home');
 	}
 };
 exports.login = function(req,res){
@@ -34,7 +34,7 @@ exports.showUsers = function (req, res, next) {
 			};
 			console.log(req.query);
 			console.log("---> " + req.query);
-			res.render( 'users', result);
+			res.render( 'signupaddress', result);
 		});
 	});
 };

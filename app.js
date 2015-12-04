@@ -40,7 +40,7 @@ app.post("/signup",signup.get);
 app.post("/signup/update/:id",signup.update);
 app.get("/signup/edit/:id",signup.get);
 app.get("/signup/delete:id",signup.delete);
-
+app.get("/signupaddress", users.showUsers);
 app.get("/users", users.checkUser,users.showUsers);
 app.get("/users/edit/:id",users.checkUser,users.get);
 app.post("/users/update/:id",users.checkUser,users.update);

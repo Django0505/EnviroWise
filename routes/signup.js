@@ -2,8 +2,8 @@ exports.show = function (req, res, next) {
 		req.getConnection(function(err, connection){
 			if (err)
 			return next(err);
-			connection.query('SELECT * from users', [], function(err, results, fields) {
-				res.render('signup', {
+			connection.query('SELECT * FROM users address', [], function(err, results, fields) {
+				res.render('signupaddress', {
 					users: results,
 				    isAdmin: Admin,
 					action: read-only
