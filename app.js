@@ -4,6 +4,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection'),
+    location = require('./routes/locations')
     users = require("./routes/users"),
     signup = require("./routes/signup");
     login = require("./routes/login")
@@ -24,7 +25,7 @@ var dbOptions = {
 
 //Allows us to use mysql from the http request
 app.use(myConnection(mysql, dbOptions, "single"));
-
+  app.use(bodyParser.urlencoded({extended: false}))
  app.use(bodyParser.json());
  app.engine('handlebars', exphbs({
      defaultLayout: 'main'
@@ -32,9 +33,6 @@ app.use(myConnection(mysql, dbOptions, "single"));
 app.set('view engine', 'handlebars');
 app.use(express.static('views'));
 app.use(express.static('public'));
-app.get('/',function(req,res){
- 	res.render('index')
- });
 
 app.post("/signup",signup.get);
 app.post("/signup/update/:id",signup.update);
@@ -53,11 +51,11 @@ app.get("/signup", function(req, res){
  res.render("sinup");
 })
 
-app.get("/signup", function(req, res){
- res.render("signup");
-})
+
 app.get("/login",login.get);
 app.post("/login", login.update);
+
+//api key AIzaSyCLSiuuq-hfTNv9g27d3NFtnmNJiBv0Hm0 
 //Here we rendering the about template to the browser
 app.get('/about', function(req, res){
   res.render('about');
@@ -80,6 +78,10 @@ app.post('/contact', function(req, res){
 app.get('/feedback', function(req, res){
   res.render('feedback');
 })
+
+app.post('/locations/add',location.add);
+app.get('/',location.show);
+app.get('/locations/delete/:id',location.delete);
 
 var port = process.env.PORT || 5000;
 var server = app.listen(port, function() {
