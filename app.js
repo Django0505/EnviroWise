@@ -17,7 +17,7 @@ app.use(compression());
 var dbOptions = {
      host : "localhost",
      user : "root",
-     password : "coder123",
+     password : "spot",
      port : 3306,
      database : "EnviroWise"
  };
@@ -36,6 +36,9 @@ app.use(express.static('public'));
 //Here we rendering the login template to the browser
 app.get("/login", function(req, res){
  res.render("login");
+})
+app.get("/signup", function(req, res){
+ res.render("sinup");
 })
 
 //Here we rendering the about template to the browser

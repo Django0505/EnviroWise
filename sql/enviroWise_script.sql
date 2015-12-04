@@ -1,5 +1,5 @@
-drop table users if exists;
-drop table bin_status if exists;
+drop table if exists users ;
+drop table if exists locations;
 
 create table users(id int not null auto_increment,
                     users_id int ,
@@ -10,7 +10,7 @@ create table users(id int not null auto_increment,
                     userRoles varchar(100),
                     primary key(id)
                     );
-create table bin_status(id int not null auto_increment,
+create table locations(id int not null auto_increment,
                         -- bin_full bool ,
                         description varchar(100) ,
                         -- locations varchar(100) ,
