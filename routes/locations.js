@@ -32,6 +32,20 @@ exports.show = function (req, res, next) {
 	});
 };
 
+exports.showCollector = function (req, res, next) {
+	req.getConnection(function(err, connection){
+		if (err)
+			return next(err);
+		connection.query('select * from locations', [], function(err, results) {
+        	if (err) return next(err);
+					console.log(results);
+    		res.render( 'collector', {
+    			locations : results
+    		});
+      });
+	});
+};
+
 exports.delete = function(req, res, next){
 	var id = req.params.id;
 	req.getConnection(function(err, connection){

@@ -81,6 +81,7 @@ app.get('/feedback', function(req, res){
 
 app.post('/locations/add',location.add);
 app.get('/',location.show);
+app.get('/collector',location.showCollector);
 app.get('/locations/delete/:id',location.delete);
 
 var port = process.env.PORT || 5000;

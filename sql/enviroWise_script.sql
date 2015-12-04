@@ -13,8 +13,8 @@ create table users(id int not null auto_increment,
 create table locations(id int not null auto_increment,
                         -- bin_full bool ,
                         description varchar(100) ,
-                        -- locations varchar(100) ,
-                        address varchar(100) ,
-                        -- longitude char(100) ,
+                        latitude varchar(100) ,
+                        -- address varchar(100) ,
+                        longitude char(100) ,
                         primary key(id)
                         );

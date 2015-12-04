@@ -11,10 +11,10 @@
           <h4><i class="fa fa-fw fa-check"></i> Bin Status</h4>
         </div>
         <div class="panel-body">
-             <form method="post" action="/">
+
           <button type="submit" class="btn btn-success">Report Bin Full</button>
           <br>
-      </form>
+      
         </div>
       </div>
 
@@ -28,14 +28,12 @@
           <input type="text"class="form-control" name="description" value = {{location.description}}>
           <div class="row2">
             <div class="location">
-            {{!-- <div class="four columns">
-              <label for="description" >Latitude</label>
-              <input type="decimal" class="form-control" name="latitude" id="latitude" value = {{location.langitude}}>
-            </div> --}}
-            {{!-- <div class="four columns">
-              <label for="description" >Longitude</label>
-              <input type="decimal" class="form-control" name="longitude" id="longitude" value = {{location.longitude}}>
-            </div> --}}
+            <div class="four columns">
+              <input type="hidden" class="form-control" name="latitude" id="latitude" value = {{location.langitude}}>
+            </div>
+            <div class="four columns">
+              <input type="hidden" class="form-control" name="longitude" id="longitude" value = {{location.longitude}}>
+            </div>
           </div>
             <div class="two columns">
                 <br>
@@ -63,11 +61,11 @@
                           Name
                       </th>
                       <th>
-                          Address
+                          Latitude
                       </th>
-                      <!-- <th>
+                      <th>
                           Longitude
-                      </th> -->
+                      </th>
                   </tr>
               </thead>
               <tbody>
@@ -77,11 +75,11 @@
                               {{description}}
                           </td>
                           <td>
-                              {{address}}
+                              {{latitude}}
                           </td>
-                          <!-- <td>
+                          <td>
                               {{longitude}}
-                          </td> -->
+                          </td>
                           <td>
                               <a href="/locations/delete/{{id}}">Delete</a>
                           </td>
