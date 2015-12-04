@@ -33,6 +33,7 @@ req.getConnection(function(err, connection){
          name : input.name,
          username : input.username,
          password : input.password,
+         address : input.address,
          user_role: input.user_role
     };
 
@@ -42,7 +43,7 @@ req.getConnection(function(err, connection){
       //res.redirect('/signup');
        res.redirect('/signup');
       });
-    });
+  });
 };
 exports.delete = function(req, res, next){
 	var id = req.params.id;
